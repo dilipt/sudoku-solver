@@ -1,5 +1,5 @@
-export const Square = (val) => {
-  let value = val;
+export const Square = (initial) => {
+  let value = initial;
   let editable = true;
 
   function getValue() { return value; }

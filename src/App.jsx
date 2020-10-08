@@ -1,4 +1,5 @@
 import React from 'react';
+import { Board } from './game';
 
 const App = () => (
   <>
@@ -6,7 +7,7 @@ const App = () => (
       <h1>Sudoku Solver</h1>
     </header>
     <main>
-      Feel free to add some content here.
+      <Board />
     </main>
   </>
 );
