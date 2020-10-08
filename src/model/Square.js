@@ -1,4 +1,4 @@
-export function Square(val) {
+export const Square = (val) => {
   let value = val;
   let editable = true;
 
@@ -13,4 +13,4 @@ export function Square(val) {
   return {
     getValue, setValue, lock, unlock,
   };
-}
+};

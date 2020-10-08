@@ -1,10 +1,12 @@
 import { Square } from './Square';
 
-export function Block() {
+const completeBlock = JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+export const Block = () => {
   const grid = [
-    [new Square(), new Square(), new Square()],
-    [new Square(), new Square(), new Square()],
-    [new Square(), new Square(), new Square()],
+    [Square(), Square(), Square()],
+    [Square(), Square(), Square()],
+    [Square(), Square(), Square()],
   ];
 
   function allValues() {
@@ -23,8 +25,7 @@ export function Block() {
 
   function isComplete() {
     const values = allValues().sort((a, b) => (a - b));
-    const matcher = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    return JSON.stringify(values) === JSON.stringify(matcher);
+    return JSON.stringify(values) === completeBlock;
   }
 
   return {
@@ -32,4 +33,4 @@ export function Block() {
     setSquare,
     isComplete,
   };
-}
+};
