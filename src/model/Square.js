@@ -2,13 +2,15 @@ export const Square = (initial) => {
   let value = initial;
   let editable = true;
 
-  function getValue() { return value; }
-  function setValue(newValue) {
-    if (editable) { value = newValue; }
-  }
+  const getValue = () => value;
 
-  function lock() { editable = false; }
-  function unlock() { editable = true; }
+  const setValue = (newValue) => {
+    value = editable ? newValue : value;
+  };
+
+  const lock = () => { editable = false; };
+
+  const unlock = () => { editable = true; };
 
   return {
     getValue, setValue, lock, unlock,
