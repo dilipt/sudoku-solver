@@ -13,16 +13,14 @@ export const Board = () => {
 
   const getBlock = (row, col) => board[row][col];
 
-  const getRow = (row) => board[row].map((boardRow) => boardRow.getRow());
+  const getRow = (row) => board[blockAt(row)].flatMap((block) => block.getRow(squareAt(row)));
 
   const getColumn = (col) => board[col];
 
-  const getSquare = (row, col) => board[blockAt(row)][blockAt(col)]
-    .getSquare(squareAt(row), squareAt(col));
+  const getSquare = (row, col) => board[blockAt(row)][blockAt(col)].getSquare(squareAt(row), squareAt(col));
 
   const setSquare = (row, col, value) => {
-    board[blockAt(row)][blockAt(col)]
-      .setSquare(squareAt(row), squareAt(col), value);
+    board[blockAt(row)][blockAt(col)].setSquare(squareAt(row), squareAt(col), value);
   };
 
   return {

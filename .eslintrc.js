@@ -21,5 +21,6 @@ module.exports = {
   rules: {
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
+    'max-len': ['error', { code: 150 }],
   },
 };
