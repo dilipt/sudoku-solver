@@ -1,26 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Block } from '../model';
+
+function createBoard() {
+  const board = [];
+  for (let i = 0; i < 81; i += 1) {
+    board.push({ locked: false, value: null });
+  }
+  return board;
+}
 
 const gameSlice = createSlice({
   name: 'game',
-  initialState: [
-    [Block(), Block(), Block()],
-    [Block(), Block(), Block()],
-    [Block(), Block(), Block()],
-  ],
+  initialState: {
+    board: createBoard(),
+  },
   reducers: {
     setSquare(state, action) {
-      const { x, y } = action;
-      const newState = [...state];
-      newState[x][y] = Block();
-      return newState;
+      const newBoard = [...state.board];
+      if (!newBoard[action.payload.position].locked) {
+        newBoard[action.payload.position].value = action.payload.value;
+      }
+      return {
+        board: newBoard,
+      };
     },
   },
 });
 
 const { actions, reducer } = gameSlice;
+const { setSquare } = actions;
 
 export {
-  actions,
+  setSquare,
   reducer,
 };

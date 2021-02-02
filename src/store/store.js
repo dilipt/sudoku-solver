@@ -1,15 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './root-reducer';
+import { reducer as gameReducer } from './game-slice';
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    game: gameReducer,
+  },
 });
-
-if (module.hot) {
-  module.hot.accept('./root-reducer', () => {
-    import('./root-reducer').then((newRootReducer) => store.replaceReducer(newRootReducer));
-  });
-}
 
 export {
   store,

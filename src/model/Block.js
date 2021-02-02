@@ -4,9 +4,9 @@ const completeBlock = JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
 export const Block = () => {
   const grid = [
-    [Square(), Square(), Square()],
-    [Square(), Square(), Square()],
-    [Square(), Square(), Square()],
+    [Square(undefined), Square(undefined), Square(undefined)],
+    [Square(undefined), Square(undefined), Square(undefined)],
+    [Square(undefined), Square(undefined), Square(undefined)],
   ];
 
   const allValues = () => grid.flat().map((sq) => sq.getValue());

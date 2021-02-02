@@ -1,33 +1,39 @@
-import { Block } from './Block';
+import { Square } from './Square';
 
-const blockAt = (n) => Math.floor(n / 3);
-
-const squareAt = (n) => n % 3;
+const createBoard = () => {
+  const board = [];
+  for (let i = 0; i < 9; i += 1) {
+    const row = [];
+    for (let j = 0; j < 9; j += 1) {
+      row.push(Square(''));
+    }
+    board.push(row);
+  }
+  return board;
+};
 
 export const Board = () => {
-  const board = [
-    [Block(), Block(), Block()],
-    [Block(), Block(), Block()],
-    [Block(), Block(), Block()],
-  ];
+  const game = createBoard();
 
-  const getBlock = (row, col) => board[row][col];
+  console.log('constructing...', JSON.stringify(game));
 
-  const getRow = (row) => board[blockAt(row)].flatMap((block) => block.getRow(squareAt(row)));
-
-  const getColumn = (col) => board[col];
-
-  const getSquare = (row, col) => board[blockAt(row)][blockAt(col)].getSquare(squareAt(row), squareAt(col));
+  const getSquare = (row, col) => game[row][col];
 
   const setSquare = (row, col, value) => {
-    board[blockAt(row)][blockAt(col)].setSquare(squareAt(row), squareAt(col), value);
+    (game[row][col]).setValue(value);
   };
+
+  const getRow = (row) => game[row];
+
+  const getColumn = (col) => game.map((row) => row[col]);
+
+  const getBlock = () => null;
 
   return {
     getSquare,
-    getBlock,
+    setSquare,
     getRow,
     getColumn,
-    setSquare,
+    getBlock,
   };
 };
