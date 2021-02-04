@@ -10,15 +10,27 @@ const StyledSquare = styled.input.attrs({ type: 'text' })`
   width: 60px;
 `;
 
+const numberRegex = /^\d$/;
+
 export function Square({ position }) {
   const dispatch = useDispatch();
-  const board = useSelector((state) => state.game.board);
+  const square = useSelector((state) => state.game.board[position]);
 
-  function valueUpdated(e) {
-    dispatch(setSquare({ position, value: e.target.value }));
+  function valueChanged(e) {
+    const updatedValue = e.target.value;
+    if (numberRegex.test(updatedValue) && !square.locked) {
+      dispatch(setSquare({ position, value: updatedValue }));
+    } else {
+      dispatch(setSquare({ position, value: square.value }));
+    }
   }
 
   return (
-    <StyledSquare maxLength="1" value={board[position.value]} onChange={valueUpdated} />
+    <StyledSquare
+      type="text"
+      maxLength="1"
+      value={square.value}
+      onChange={valueChanged}
+    />
   );
 }

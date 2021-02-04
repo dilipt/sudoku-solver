@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
@@ -25,7 +26,7 @@ export function Board() {
 
   return (
     <StyledBoard>
-      {board.map((square, idx) => <Square position={idx} />)}
+      {board.map((square, idx) => <Square position={idx} key={idx} />)}
     </StyledBoard>
   );
 }

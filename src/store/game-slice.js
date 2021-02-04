@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 function createBoard() {
   const board = [];
   for (let i = 0; i < 81; i += 1) {
-    board.push({ locked: false, value: null });
+    board.push({ locked: false, value: '' });
   }
   return board;
 }
@@ -15,12 +15,13 @@ const gameSlice = createSlice({
   },
   reducers: {
     setSquare(state, action) {
-      const newBoard = [...state.board];
-      if (!newBoard[action.payload.position].locked) {
-        newBoard[action.payload.position].value = action.payload.value;
-      }
       return {
-        board: newBoard,
+        ...state,
+        board: state.board.map((square, idx) => (
+          action.payload.position !== idx ? square : {
+            ...square,
+            value: square.locked ? square.value : action.payload.value,
+          })),
       };
     },
   },

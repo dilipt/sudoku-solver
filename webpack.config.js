@@ -4,29 +4,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname, './src/index.js'),
+  mode: 'development',
   module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-      {
-        test: /\.(jpg|png|svg|ico)$/,
-        use: {
-          loader: 'url-loader',
-        },
-      },
-    ],
+    rules: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader'],
+    }, {
+      test: /\.(jpg|png|svg|ico)$/,
+      type: 'asset/resource',
+    }],
   },
   resolve: {
-    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    modules: [path.resolve(__dirname, './src'), 'node_modules'],
     extensions: ['*', '.js', '.jsx'],
   },
   output: {
-    path: `${__dirname}/dist`,
-    filename: 'bundle.[hash].js',
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.[fullhash].js',
   },
   devServer: {
     contentBase: './dist',
@@ -35,7 +31,6 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
