@@ -14,7 +14,16 @@ const gameSlice = createSlice({
     board: createBoard(),
   },
   reducers: {
-    setSquare(state, action) {
+    gameStarted(state) {
+      return {
+        ...state,
+        board: state.board.map((square) => ({
+          ...square,
+          locked: !!square.value,
+        })),
+      };
+    },
+    squareUpdated(state, action) {
       return {
         ...state,
         board: state.board.map((square, idx) => (
@@ -24,13 +33,24 @@ const gameSlice = createSlice({
           })),
       };
     },
+    boardCleared(state) {
+      return {
+        ...state,
+        board: state.board.map((square) => ({
+          ...square,
+          value: square.locked ? square.value : '',
+        })),
+      };
+    },
   },
 });
 
 const { actions, reducer } = gameSlice;
-const { setSquare } = actions;
+const { gameStarted, squareUpdated, boardCleared } = actions;
 
 export {
-  setSquare,
+  gameStarted,
+  squareUpdated,
+  boardCleared,
   reducer,
 };

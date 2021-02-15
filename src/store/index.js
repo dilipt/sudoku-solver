@@ -1,7 +1,9 @@
 import { store } from './store';
-import { setSquare } from './game-slice';
+import { gameStarted, squareUpdated, boardCleared } from './game-slice';
 
 export {
   store,
-  setSquare,
+  gameStarted,
+  squareUpdated,
+  boardCleared,
 };

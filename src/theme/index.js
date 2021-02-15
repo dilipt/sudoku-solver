@@ -1,5 +1,5 @@
 import { Colours } from './colours';
 
-export {
-  Colours,
+export const theme = {
+  ...Colours,
 };
