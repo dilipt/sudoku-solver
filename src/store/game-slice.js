@@ -42,15 +42,24 @@ const gameSlice = createSlice({
         })),
       };
     },
+    gameRestarted(state) {
+      return {
+        ...state,
+        board: createBoard(),
+      };
+    },
   },
 });
 
 const { actions, reducer } = gameSlice;
-const { gameStarted, squareUpdated, boardCleared } = actions;
+const {
+  gameStarted, squareUpdated, boardCleared, gameRestarted,
+} = actions;
 
 export {
   gameStarted,
   squareUpdated,
   boardCleared,
+  gameRestarted,
   reducer,
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Square } from './Square';
-import { gameStarted, boardCleared } from '../store';
+import { gameStarted, boardCleared, gameRestarted } from '../store';
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const StyledBoard = styled.section`
 `;
 
 const Button = styled.button.attrs({ type: 'button' })`
-  width: 200px;
+  width: 150px;
   background-color: ${(props) => props.theme.DARK_CORNFLOWER_BLUE};
   color: hsl(0, 0%, 100%, 0.85);
   border: none;
@@ -65,6 +65,7 @@ export function Board() {
       <ButtonContainer>
         <Button onClick={() => dispatch(gameStarted())}>Start game</Button>
         <Button onClick={() => dispatch(boardCleared())}>Clear all</Button>
+        <Button onClick={() => dispatch(gameRestarted())}>Reset Game</Button>
       </ButtonContainer>
 
     </Container>

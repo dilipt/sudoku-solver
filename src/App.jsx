@@ -28,19 +28,19 @@ const Main = styled.main`
   align-items: center;
 `;
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <Container>
-        <Header>
-          <h1>Sudoku Solver</h1>
-        </Header>
-        <Main>
-          <Board />
-        </Main>
-      </Container>
-    </Provider>
-  </ThemeProvider>
-);
-
-export default App;
+export function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Container>
+          <Header>
+            <h1>Sudoku Solver</h1>
+          </Header>
+          <Main>
+            <Board />
+          </Main>
+        </Container>
+      </Provider>
+    </ThemeProvider>
+  );
+}
